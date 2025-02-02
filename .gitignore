@@ -1,0 +1,4 @@
+data/*
+.idea/
+_snapshot_zond_getBlockByNumber.json
+output/*
