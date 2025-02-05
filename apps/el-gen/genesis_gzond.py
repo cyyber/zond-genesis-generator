@@ -80,18 +80,13 @@ else:
             }
         },
         "coinbase": "Z0000000000000000000000000000000000000000",
-        "extraData": "",
+        "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000",
         "gasLimit": hex(int(data['genesis_gaslimit'] if 'genesis_gaslimit' in data and data['genesis_gaslimit'] is not None else 25000000)),
         "mixhash": "0x0000000000000000000000000000000000000000000000000000000000000000",
         "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
         "timestamp": str(data['genesis_timestamp'])
     }
-
-    # for key, value in data['el_premine'].items():
-    #     # acct = w3.eth.account.from_mnemonic(data['mnemonic'], account_path=key, passphrase='')
-    #     weival = value.replace('ETH', '0' * 18)
-    #     out["alloc"][acct.address] = {"balance": weival}
-
+    
     # Some hardcoded addrs
     def add_alloc_entry(addr, account):
         # Convert balance format

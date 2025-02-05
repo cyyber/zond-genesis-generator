@@ -1,7 +1,9 @@
 FROM golang:1.22 as builder
-RUN git clone https://github.com/cyyber/qrysm.git  \
+RUN git clone -b feature/docker https://github.com/rgeraldes24/qrysm.git  \
     && cd qrysm \
-    && go install ./cmd/qrysmctl
+    && go install ./cmd/qrysmctl \
+    && go install ./cmd/staking-deposit-cli/deposit \ 
+    && go install ./cmd/validator
 
 FROM debian:latest
 WORKDIR /work
@@ -19,6 +21,8 @@ COPY apps /apps
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN cd /apps/el-gen && python3 -m venv .venv && /apps/el-gen/.venv/bin/pip3 install -r /apps/el-gen/requirements.txt
 COPY --from=builder /go/bin/qrysmctl /usr/local/bin/qrysmctl
+COPY --from=builder /go/bin/deposit /usr/local/bin/deposit
+COPY --from=builder /go/bin/validator /usr/local/bin/validator
 COPY config-example /config
 COPY defaults /defaults
 COPY entrypoint.sh .

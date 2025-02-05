@@ -78,13 +78,25 @@ gen_cl_config(){
         fi
         # Create bootstrap_nodes.txt
         echo $BEACON_STATIC_ENR > /data/metadata/bootstrap_nodes.txt
-        # Generate genesis  
-        # NOTE(rgeraldes24): for now, Qrysm genesis generator defaulfs to no withdrawal credentials at genesis 
-        # --deposit-json-file=consensus/validator_keys/deposit_data-1737973926.json \
+
+        # Generate preregistered validator keys
+        validator_keys_args+=(
+          new-seed
+          --num-validators $NUMBER_OF_VALIDATORS
+          --folder /data/metadata/validator_keys
+          --mnemonic "$EL_AND_CL_MNEMONIC"
+          --keystore-password ""
+          --chain-name "dev"
+        )
+        /usr/local/bin/deposit "${validator_keys_args[@]}"
+
+        # Generate genesis 
+        DEPOSIT_DATA_FILE=$(find /data/metadata/validator_keys -name "*deposit_data*")
         genesis_args+=(
           testnet
           generate-genesis
           --num-validators $NUMBER_OF_VALIDATORS
+          --deposit-json-file $DEPOSIT_DATA_FILE
           --gzond-genesis-json-in /data/metadata/genesis.json
           --output-ssz /data/metadata/genesis.ssz
           --chain-config-file /data/metadata/config.yaml
