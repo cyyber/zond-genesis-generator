@@ -1,4 +1,4 @@
-FROM golang:1.22 as builder
+FROM golang:1.22 AS builder
 RUN git clone -b feature/docker https://github.com/rgeraldes24/qrysm.git  \
     && cd qrysm \
     && go install ./cmd/qrysmctl \

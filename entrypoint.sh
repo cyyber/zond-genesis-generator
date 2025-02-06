@@ -80,12 +80,13 @@ gen_cl_config(){
         echo $BEACON_STATIC_ENR > /data/metadata/bootstrap_nodes.txt
 
         # Generate preregistered validator keys
+        touch /data/metadata/keystore_password.txt
         validator_keys_args+=(
           new-seed
           --num-validators $NUMBER_OF_VALIDATORS
           --folder /data/metadata/validator_keys
           --mnemonic "$EL_AND_CL_MNEMONIC"
-          --keystore-password ""
+          --keystore-password-file /data/metadata/keystore_password.txt
           --chain-name "dev"
         )
         /usr/local/bin/deposit "${validator_keys_args[@]}"
