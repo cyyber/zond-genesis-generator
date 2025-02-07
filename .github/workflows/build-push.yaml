@@ -43,7 +43,7 @@ jobs:
       - uses: ./.github/actions/manifest
         with:
           tag: ${{ needs.prepare.outputs.tag }}
-          repository: ethpandaops/ethereum-genesis-generator
+          repository: theqrl/zond-genesis-generator
           platforms: ${{ needs.prepare.outputs.platforms }}
           DOCKER_USERNAME: "${{ secrets.DOCKER_USERNAME }}"
           DOCKER_PASSWORD: "${{ secrets.DOCKER_PASSWORD }}"

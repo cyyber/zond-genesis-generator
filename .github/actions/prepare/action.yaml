@@ -20,7 +20,7 @@ runs:
         PLATFORMS_JSON="["
 
         # Extract the platforms
-        platforms=$(yq e ".ethereum-genesis-generator[]" platforms.yaml)
+        platforms=$(yq e ".zond-genesis-generator[]" platforms.yaml)
 
         for platform in $platforms; do
           slug=$(echo "$platform" | tr '/' '-')
@@ -34,7 +34,7 @@ runs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ethpandaops/ethereum-genesis-generator
+        images: theqrl/zond-genesis-generator
         flavor: latest=auto
         tags: |
           type=semver,pattern={{version}}
