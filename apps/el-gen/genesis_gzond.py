@@ -4,7 +4,6 @@ import sys
 
 testnet_config_path = "genesis-config.yaml"
 mainnet_config_path = "/apps/el-gen/mainnet/genesis.json"
-# sepolia_config_path = "/apps/el-gen/sepolia/genesis.json"
 isNamedTestnet = False
 combined_allocs = {}
 if len(sys.argv) > 1:
@@ -18,13 +17,10 @@ if int(data['chain_id']) == 1:
     isNamedTestnet = True
 
 if int(data['chain_id']) == 1:
+    # TODO(now.youtrack.cloud/issue/TQ-37)
     with open(mainnet_config_path) as m:
         mainnet_json = json.loads(m.read())
     out = mainnet_json
-# elif int(data['chain_id']) == 11155111:
-#     with open(sepolia_config_path) as m:
-#         sepolia_json = json.loads(m.read())
-#     out = sepolia_json
 else:
     out = {
         "config": {
@@ -111,6 +107,7 @@ else:
         if 'nonce' in account:
             alloc_entry['nonce'] = account['nonce']
 
+        # TODO(rgeraldes24)
         # Optionally set private key
         if 'secretKey' in account:
             alloc_entry['secretKey'] = account['secretKey']
