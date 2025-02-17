@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/manifest
         with:
-          tag: zond-genesis-generator-${{ needs.prepare.outputs.tag }}
+          tag: ${{ needs.prepare.outputs.tag }}
           repository: qrledger/qrysm
           platforms: ${{ needs.prepare.outputs.platforms }}
           DOCKER_USERNAME: "${{ secrets.DOCKERHUB_USERNAME }}"

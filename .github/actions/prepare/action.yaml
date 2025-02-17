@@ -34,16 +34,16 @@ runs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: qrledger/qrysm:zond-genesis-generator
+        images: qrledger/qrysm
         flavor: latest=auto
         tags: |
-          type=semver,pattern={{version}}
-          type=ref,event=pr
-          type=ref,event=branch
-          type=sha
-          type=match,event=tag,pattern=^v\d+\.\d+\.\d+$,group=0
-          type=match,event=tag,pattern=^verkle-gen-v\d+\.\d+\.\d+$,group=0
-          type=match,event=tag,pattern=^ephemery-v\d+\.\d+\.\d+$,group=0
+          type=semver,pattern={{version}},prefix=zond-genesis-generator-
+          type=ref,event=pr,prefix=zond-genesis-generator-
+          type=ref,event=branch,prefix=zond-genesis-generator-
+          type=sha,prefix=zond-genesis-generator-
+          type=match,event=tag,pattern=^v\d+\.\d+\.\d+$,group=0,prefix=zond-genesis-generator-
+          type=match,event=tag,pattern=^verkle-gen-v\d+\.\d+\.\d+$,group=0,prefix=zond-genesis-generator-
+          type=match,event=tag,pattern=^ephemery-v\d+\.\d+\.\d+$,group=0,prefix=zond-genesis-generator-
 
     - name: Set tag
       id: set_tag
