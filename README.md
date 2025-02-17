@@ -13,17 +13,17 @@ mkdir output
 # Overwriting the config files and generating the EL and CL genesis
 docker run --rm -it -u $UID -v $PWD/output:/data \
   -v $PWD/config/values.env:/config/values.env \
-  theqrl/zond-genesis-generator:latest all
+  qrledger/qrysm:zond-genesis-generator-latest all
 
 # Just creating the EL genesis
 docker run --rm -it -u $UID -v $PWD/output:/data \
   -v $PWD/config/values.env:/config/values.env \
-  theqrl/zond-genesis-generator:latest el
+  qrledger/qrysm:zond-genesis-generator-latest el
 
 # Just creating the CL genesis
 docker run --rm -it -u $UID -v $PWD/output:/data \
   -v $PWD/config/values.env:/config/values.env \
-  theqrl/zond-genesis-generator:latest cl
+  qrledger/qrysm:zond-genesis-generator-latest cl
 ```
 ### Environment variables
 

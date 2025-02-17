@@ -34,7 +34,7 @@ runs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: theqrl/zond-genesis-generator
+        images: qrledger/qrysm:zond-genesis-generator
         flavor: latest=auto
         tags: |
           type=semver,pattern={{version}}
