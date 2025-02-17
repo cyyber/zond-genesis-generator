@@ -1,7 +1,10 @@
-ARG QRYSM_GIT_BRANCH=dev
 ARG QRYSM_GIT_REPO=https://github.com/theQRL/qrysm.git
+ARG QRYSM_GIT_BRANCH=dev
 
 FROM golang:1.22 AS builder
+
+ARG QRYSM_GIT_REPO
+ARG QRYSM_GIT_BRANCH
 
 RUN git clone -b ${QRYSM_GIT_BRANCH} ${QRYSM_GIT_REPO}  \
     && cd qrysm \
