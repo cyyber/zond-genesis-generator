@@ -27,7 +27,7 @@ else:
             "chainId": int(data['chain_id'])
         },
         "alloc": {
-            # Allocate 1 wei to all possible pre-compiles.
+            # Allocate 1 planck to all possible pre-compiles.
             # See https://github.com/ethereum/EIPs/issues/716 "SpuriousDragon RIPEMD bug"
             # E.g. Rinkeby allocates it like this.
             # See https://github.com/ethereum/go-ethereum/blob/092856267067dd78b527a773f5b240d5c9f5693a/core/genesis.go#L370
@@ -87,10 +87,10 @@ else:
     def add_alloc_entry(addr, account):
         # Convert balance format
         if isinstance(account, dict) and 'balance' in account:
-            balance_value = account['balance'].replace('ETH', '0' * 18)
+            balance_value = account['balance'].replace('ZND', '0' * 18)
         else:
             # If it's not a dictionary, assume it's a single value for backward compatibility
-            balance_value = account.replace('ETH', '0' * 18)
+            balance_value = account.replace('ZND', '0' * 18)
 
         # Create alloc dictionary entry
         alloc_entry = {"balance": balance_value}
