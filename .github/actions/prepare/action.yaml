@@ -20,7 +20,7 @@ runs:
         PLATFORMS_JSON="["
 
         # Extract the platforms
-        platforms=$(yq e ".zond-genesis-generator[]" platforms.yaml)
+        platforms=$(yq e ".qrl-genesis-generator[]" platforms.yaml)
 
         for platform in $platforms; do
           slug=$(echo "$platform" | tr '/' '-')
@@ -37,13 +37,13 @@ runs:
         images: qrledger/qrysm
         flavor: latest=auto
         tags: |
-          type=semver,pattern={{version}},prefix=zond-genesis-generator-
-          type=ref,event=pr,prefix=zond-genesis-generator-
-          type=ref,event=branch,prefix=zond-genesis-generator-
-          type=sha,prefix=zond-genesis-generator-
-          type=match,event=tag,pattern=^v\d+\.\d+\.\d+$,group=0,prefix=zond-genesis-generator-
-          type=match,event=tag,pattern=^verkle-gen-v\d+\.\d+\.\d+$,group=0,prefix=zond-genesis-generator-
-          type=match,event=tag,pattern=^ephemery-v\d+\.\d+\.\d+$,group=0,prefix=zond-genesis-generator-
+          type=semver,pattern={{version}},prefix=qrl-genesis-generator-
+          type=ref,event=pr,prefix=qrl-genesis-generator-
+          type=ref,event=branch,prefix=qrl-genesis-generator-
+          type=sha,prefix=qrl-genesis-generator-
+          type=match,event=tag,pattern=^v\d+\.\d+\.\d+$,group=0,prefix=qrl-genesis-generator-
+          type=match,event=tag,pattern=^verkle-gen-v\d+\.\d+\.\d+$,group=0,prefix=qrl-genesis-generator-
+          type=match,event=tag,pattern=^ephemery-v\d+\.\d+\.\d+$,group=0,prefix=qrl-genesis-generator-
 
     - name: Set tag
       id: set_tag
