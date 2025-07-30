@@ -75,7 +75,7 @@ else:
                 }
             }
         },
-        "coinbase": "Z0000000000000000000000000000000000000000",
+        "coinbase": "Q0000000000000000000000000000000000000000",
         "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000",
         "gasLimit": hex(int(data['genesis_gaslimit'] if 'genesis_gaslimit' in data and data['genesis_gaslimit'] is not None else 25000000)),
         "mixhash": "0x0000000000000000000000000000000000000000000000000000000000000000",
@@ -87,10 +87,10 @@ else:
     def add_alloc_entry(addr, account):
         # Convert balance format
         if isinstance(account, dict) and 'balance' in account:
-            balance_value = account['balance'].replace('ZND', '0' * 18)
+            balance_value = account['balance'].replace('QRL', '0' * 18)
         else:
             # If it's not a dictionary, assume it's a single value for backward compatibility
-            balance_value = account.replace('ZND', '0' * 18)
+            balance_value = account.replace('QRL', '0' * 18)
 
         # Create alloc dictionary entry
         alloc_entry = {"balance": balance_value}
