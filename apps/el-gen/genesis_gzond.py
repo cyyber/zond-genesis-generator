@@ -32,7 +32,7 @@ else:
             # E.g. Rinkeby allocates it like this.
             # See https://github.com/ethereum/go-ethereum/blob/092856267067dd78b527a773f5b240d5c9f5693a/core/genesis.go#L370
             **{
-                "Z" + i.to_bytes(length=20, byteorder='big').hex(): {
+                "Q" + i.to_bytes(length=20, byteorder='big').hex(): {
                     "balance": "1",
                 } for i in range(256)
             },
