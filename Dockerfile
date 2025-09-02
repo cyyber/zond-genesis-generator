@@ -12,7 +12,7 @@ RUN git clone -b ${QRYSM_GIT_BRANCH} ${QRYSM_GIT_REPO}  \
     && go install ./cmd/staking-deposit-cli/deposit \ 
     && go install ./cmd/validator
 
-FROM debian:latest
+FROM debian:12
 WORKDIR /work
 VOLUME ["/config", "/data"]
 EXPOSE 8000/tcp
