@@ -77,7 +77,7 @@ gen_cl_config(){
           gen_minimal_config
         fi
         # Create bootstrap_nodes.txt
-        echo $BEACON_STATIC_ENR > /data/metadata/bootstrap_nodes.txt
+        echo $BEACON_STATIC_QNR > /data/metadata/bootstrap_nodes.txt
 
         # Generate preregistered validator keys
         touch /data/metadata/keystore_password.txt

@@ -1,4 +1,5 @@
-ARG QRYSM_GIT_REPO=https://github.com/theQRL/qrysm.git
+# ARG QRYSM_GIT_REPO=https://github.com/theQRL/qrysm.git
+ARG QRYSM_GIT_REPO=https://github.com/cyyber/qrysm.git
 ARG QRYSM_GIT_BRANCH=dev
 
 FROM golang:1.22 AS builder
@@ -6,13 +7,14 @@ FROM golang:1.22 AS builder
 ARG QRYSM_GIT_REPO
 ARG QRYSM_GIT_BRANCH
 
-RUN git clone -b ${QRYSM_GIT_BRANCH} ${QRYSM_GIT_REPO}  \
+# RUN git clone -b ${QRYSM_GIT_BRANCH} ${QRYSM_GIT_REPO}  \
+RUN git clone ${QRYSM_GIT_REPO}  \
     && cd qrysm \
     && go install ./cmd/qrysmctl \
     && go install ./cmd/staking-deposit-cli/deposit \ 
     && go install ./cmd/validator
 
-FROM debian:latest
+FROM debian:12
 WORKDIR /work
 VOLUME ["/config", "/data"]
 EXPOSE 8000/tcp
