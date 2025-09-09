@@ -89,6 +89,12 @@ gen_cl_config(){
           --keystore-password-file /data/metadata/keystore_password.txt
           --chain-name "dev"
         )
+        if [ "$LIGHT_KDF_ENABLED" = true ] ; then
+          validator_keys_args+=(
+            --lightkdf
+          )
+        fi
+
         /usr/local/bin/deposit "${validator_keys_args[@]}"
 
         # Generate genesis 
