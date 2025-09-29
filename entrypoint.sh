@@ -77,7 +77,7 @@ gen_cl_config(){
           gen_minimal_config
         fi
         # Create bootstrap_nodes.txt
-        echo $BEACON_STATIC_ENR > /data/metadata/bootstrap_nodes.txt
+        echo $BEACON_STATIC_QNR > /data/metadata/bootstrap_nodes.txt
 
         # Generate preregistered validator keys
         touch /data/metadata/keystore_password.txt
@@ -89,6 +89,12 @@ gen_cl_config(){
           --keystore-password-file /data/metadata/keystore_password.txt
           --chain-name "dev"
         )
+        if [ "$LIGHT_KDF_ENABLED" = true ] ; then
+          validator_keys_args+=(
+            --lightkdf
+          )
+        fi
+
         /usr/local/bin/deposit "${validator_keys_args[@]}"
 
         # Generate genesis 
